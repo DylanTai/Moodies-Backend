@@ -80,22 +80,4 @@ export const deleteMood = async (req, res) => {
   }
 };
 
-// POST "/moods/:moodId/comments"
-export const postComment = async (req, res) => {
-  try {
-    req.body.author = req.user._id;
-    const mood = await Mood.findById(req.params.moodId);
-    mood.comments.push(req.body);
-    await mood.save();
 
-    // Find the newly created comment:
-    const newComment = mood.comments[mood.comments.length - 1];
-
-    newComment._doc.author = req.user;
-
-    // Respond with the newComment:
-    res.status(201).json(newComment);
-  } catch (err) {
-    res.status(500).json({ err: err.message });
-  }
-};
