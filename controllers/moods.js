@@ -5,9 +5,11 @@ import Mood from "../models/mood.js";
 // POST - create - "/moods"
 export const createMood = async (req, res) => {
   try {
+    console.log("Body: ", req.body);
+    console.log("User: ", req.user);
     req.body.user = req.user._id;
     const mood = await Mood.create(req.body);
-    mood._doc.user = req.user;
+    //mood._doc.user = req.user;
     res.status(201).json(mood);
   } catch (err) {
     res.status(500).json({ err: err.message });
@@ -79,5 +81,3 @@ export const deleteMood = async (req, res) => {
     res.status(500).json({ err: err.message });
   }
 };
-
-
