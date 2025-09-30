@@ -11,7 +11,7 @@ const commentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const hootSchema = new mongoose.Schema(
+const moodSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -24,7 +24,6 @@ const hootSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: ["News", "Sports", "Games", "Movies", "Music", "Television"],
     },
     author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     comments: [commentSchema],
@@ -32,6 +31,6 @@ const hootSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Hoot = mongoose.model("Hoot", hootSchema);
+const Mood = mongoose.model("Mood", moodSchema);
 
-export default Hoot;
+export default Mood;

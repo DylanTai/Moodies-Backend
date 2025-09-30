@@ -11,7 +11,7 @@ const app = express();
 
 import authRouter from "./controllers/auth.js";
 import usersRouter from "./controllers/users.js";
-import hootRouter from "./routes/hoot.js";
+import moodRouter from "./routes/mood.js";
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI);
@@ -28,7 +28,7 @@ app.use(logger("dev"));
 // Routes
 app.use("/auth", authRouter);
 app.use("/users", usersRouter);
-app.use("/hoots", hootRouter);
+app.use("/moods", moodRouter);
 
 // Start the server and listen on port 3000
 app.listen(3000, () => {
