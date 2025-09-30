@@ -1,32 +1,42 @@
 import mongoose from "mongoose";
 
-const commentSchema = new mongoose.Schema(
-  {
-    text: {
-      type: String,
-      required: true,
-    },
-    author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+const commentSchema = new mongoose.Schema({
+  note: {
+    type: String,
+    required: true,
   },
-  { timestamps: true }
-);
+});
 
 const moodSchema = new mongoose.Schema(
   {
-    title: {
-      type: String,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    emotion: {
+      type: "enum",
+      enum: [
+        "happy",
+        "sad",
+        "anxious",
+        "scared",
+        "disgusted",
+        "surprised",
+        "angry",
+      ],
       required: true,
     },
-    text: {
-      type: String,
+    physical: {
+      type: [String],
       required: true,
     },
-    category: {
-      type: String,
+    intensity: {
+      type: "enum",
+      enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       required: true,
     },
-    author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    comments: [commentSchema],
+    timeOfEmotion: {
+      type: Date,
+      required: true,
+    },
+    comments: commentSchema,
   },
   { timestamps: true }
 );
