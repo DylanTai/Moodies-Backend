@@ -5,9 +5,9 @@ import Mood from "../models/mood.js";
 // POST - create - "/moods"
 export const createMood = async (req, res) => {
   try {
-    req.body.author = req.user._id;
+    req.body.user = req.user._id;
     const mood = await Mood.create(req.body);
-    // mood._doc.author = req.user;
+    mood._doc.user = req.user;
     res.status(201).json(mood);
   } catch (err) {
     res.status(500).json({ err: err.message });
@@ -18,7 +18,7 @@ export const createMood = async (req, res) => {
 export const getMoods = async (req, res) => {
   try {
     const moods = await Mood.find({})
-      .populate("author")
+      .populate("user")
       .sort({ createdAt: "desc" });
     res.status(200).json(moods);
   } catch (err) {
@@ -29,7 +29,7 @@ export const getMoods = async (req, res) => {
 // GET - show - "/moods/:moodId"
 export const getMood = async (req, res) => {
   try {
-    const mood = await Mood.findById(req.params.moodId).populate("author");
+    const mood = await Mood.findById(req.params.moodId).populate("user");
     res.status(200).json(mood);
   } catch (err) {
     res.status(500).json({ err: err.message });
@@ -43,7 +43,7 @@ export const updateMood = async (req, res) => {
     const mood = await Mood.findById(req.params.moodId);
 
     // Check permissions:
-    if (!mood.author.equals(req.user._id)) {
+    if (!mood.user.equals(req.user._id)) {
       return res.status(403).send("You're not allowed to do that!");
     }
 
@@ -55,7 +55,7 @@ export const updateMood = async (req, res) => {
     );
 
     // Append req.user to the author property:
-    updatedMood._doc.author = req.user;
+    updatedMood._doc.user = req.user;
 
     // Issue JSON response:
     res.status(200).json(updatedMood);
@@ -69,7 +69,7 @@ export const deleteMood = async (req, res) => {
   try {
     const mood = await Mood.findById(req.params.moodId);
 
-    if (!mood.author.equals(req.user._id)) {
+    if (!mood.user.equals(req.user._id)) {
       return res.status(403).send("You're not allowed to do that!");
     }
 
