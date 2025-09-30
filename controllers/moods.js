@@ -5,9 +5,11 @@ import Mood from "../models/mood.js";
 // POST - create - "/moods"
 export const createMood = async (req, res) => {
   try {
+    console.log("Body: ", req.body);
+    console.log("User: ", req.user);
     req.body.user = req.user._id;
     const mood = await Mood.create(req.body);
-    mood._doc.user = req.user;
+    //mood._doc.user = req.user;
     res.status(201).json(mood);
   } catch (err) {
     res.status(500).json({ err: err.message });
@@ -44,7 +46,7 @@ export const updateMood = async (req, res) => {
 
     // Check permissions:
     if (!mood.user.equals(req.user._id)) {
-      return res.status(403).send("Whoops! Please log in to do this!");
+      return res.status(403).send("You're not allowed to do that!");
     }
 
     // Update mood:
@@ -70,7 +72,7 @@ export const deleteMood = async (req, res) => {
     const mood = await Mood.findById(req.params.moodId);
 
     if (!mood.user.equals(req.user._id)) {
-      return res.status(403).send("Whoops! Please log in to do this!");
+      return res.status(403).send("You're not allowed to do that!");
     }
 
     const deletedMood = await Mood.findByIdAndDelete(req.params.moodId);
@@ -79,4 +81,3 @@ export const deleteMood = async (req, res) => {
     res.status(500).json({ err: err.message });
   }
 };
-
