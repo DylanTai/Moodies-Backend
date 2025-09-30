@@ -5,6 +5,7 @@ const commentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
 const moodSchema = new mongoose.Schema(
@@ -24,19 +25,18 @@ const moodSchema = new mongoose.Schema(
       required: true,
     },
     physical: {
-      type: [String],
+      type: String,
       required: true,
     },
     intensity: {
-      type: "enum",
-      enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      type: Number,
       required: true,
     },
     timeOfEmotion: {
       type: Date,
       required: true,
     },
-    comments: commentSchema,
+    comments: [commentSchema],
   },
   { timestamps: true }
 );
