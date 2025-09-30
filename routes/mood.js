@@ -10,6 +10,5 @@ router.get("/", verifyToken, moodController.getMoods);
 router.get("/:moodId", verifyToken, moodController.getMood);
 router.put("/:moodId", verifyToken, moodController.updateMood);
 router.delete("/:moodId", verifyToken, moodController.deleteMood);
-router.post("/:moodId", verifyToken, moodController.postComment);
 
 export default router;
