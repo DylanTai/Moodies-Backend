@@ -24,7 +24,7 @@ const moodSchema = new mongoose.Schema(
       required: true,
     },
     physical: {
-      type: [String],
+      type: String,
       required: true,
     },
     intensity: {
