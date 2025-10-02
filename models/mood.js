@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const commentSchema = new mongoose.Schema({
   note: {
     type: String,
-    required: true,
   },
 });
 
