@@ -19,7 +19,7 @@ export const createMood = async (req, res) => {
 // GET - index - "/moods"
 export const getMoods = async (req, res) => {
   try {
-    const moods = await Mood.find({})
+    const moods = await Mood.find({ user: req.user._id })
       .populate("user")
       .sort({ createdAt: "desc" });
     res.status(200).json(moods);
