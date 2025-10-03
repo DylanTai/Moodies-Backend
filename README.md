@@ -120,6 +120,6 @@ This project uses:
 
 ## Contributors
 
-- [Daequan Sessìon](https://github.com/daequansession)
+- [Daequan Sessíon](https://github.com/daequansession)
 - [Dylan Tai](https://github.com/DylanTai)
 - [Sara Mattina](https://github.com/saramattina)
