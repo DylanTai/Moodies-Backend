@@ -11,7 +11,7 @@ router.post("/", verifyToken, moodController.createMood);
 router.get("/", verifyToken, moodController.getMoods);
 
 // Access to the "social" route of the website
-router.get("/social", verifyToken, moodController.getMoodSocial);
+router.get("/social", moodController.getMoodSocial);
 
 // Gives the user the oppurtunity to access a specefic mood.
 router.get("/:moodId", verifyToken, moodController.getMood);
