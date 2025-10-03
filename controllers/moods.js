@@ -28,6 +28,16 @@ export const getMoods = async (req, res) => {
   }
 };
 
+// GET - index - "/social"
+export const getMoodSocial = async (req, res) => {
+  try {
+    const moods = await Mood.find({}).sort({ createdAt: "desc" });
+    res.status(200).json(moods);
+  } catch (err) {
+    res.status(500).json({ err: err.message });
+  }
+};
+
 // GET - show - "/moods/:moodId"
 export const getMood = async (req, res) => {
   try {
