@@ -76,6 +76,16 @@ export const updateMood = async (req, res) => {
   }
 };
 
+export const deleteAllMoods = async (req, res) => {
+  try {
+    await Mood.deleteMany({}); // wipe the whole collection
+    res.json({ message: "All moods deleted" });
+  } catch (err) {
+    console.error("Delete all moods error:", err);
+    res.status(500).json({ error: "Failed to delete moods" });
+  }
+};
+
 // DELETE - delete - "/moods/:moodId"
 export const deleteMood = async (req, res) => {
   try {

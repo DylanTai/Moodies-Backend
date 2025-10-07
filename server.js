@@ -9,8 +9,8 @@ import logger from "morgan";
 const app = express();
 // Import routers
 
-import authRouter from "./controllers/auth.js";
-import usersRouter from "./controllers/users.js";
+import authRouter from "./routes/auth.js";
+import usersRouter from "./routes/users.js";
 import moodRouter from "./routes/mood.js";
 
 // Connect to MongoDB
