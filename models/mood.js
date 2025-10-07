@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const commentSchema = new mongoose.Schema({
   note: {
     type: String,
-    required: true,
   },
 });
 
@@ -13,18 +12,18 @@ const moodSchema = new mongoose.Schema(
     emotion: {
       type: String,
       enum: [
-        "happy",
-        "sad",
-        "anxious",
-        "scared",
-        "disgusted",
-        "surprised",
-        "angry",
+        "Happy",
+        "Sad",
+        "Anxious",
+        "Scared",
+        "Disgusted",
+        "Surprised",
+        "Angry",
       ],
       required: true,
     },
     physical: {
-      type: [String],
+      type: String,
       required: true,
     },
     intensity: {
